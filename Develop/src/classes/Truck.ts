@@ -62,10 +62,36 @@ class Truck extends Vehicle {
     // TODO: If it is not, log that the vehicle is too heavy to be towed
   }
 
-  // TODO: Override the printDetails method from the Vehicle class
-  // TODO: The method should call the printDetails method of the parent class
-  // TODO: The method should log the details of the Truck
-  // TODO: The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
+  // ***TODO: Override the printDetails method from the Vehicle class
+  // ***TODO: The method should call the printDetails method of the parent class
+  // ***TODO: The method should log the details of the Truck
+  // ***TODO: The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
+
+  override printDetails(): void {
+    super.printDetails();
+
+    console.log(`VIN: ${this.vin}`);
+    console.log(`Color: ${this.color}`);
+    console.log(`Make: ${this.make}`);
+    console.log(`Model: ${this.model}`);
+    console.log(`Year: ${this.year}`);
+    console.log(`Weight: ${this.weight} lbs`);
+    console.log(`Top Speed: ${this.topSpeed}`);
+    console.log(`Towing Capacity: ${this.towingCapacity} lbs`);
+
+    console.log(
+      `Wheel 1: ${this.wheels[0].getDiameter} inch with a ${this.wheels[0].getTireBrand} tire`
+    );
+    console.log(
+      `Wheel 2: ${this.wheels[1].getDiameter} inch with a ${this.wheels[1].getTireBrand} tire`
+    );
+    console.log(
+      `Wheel 3: ${this.wheels[2].getDiameter} inch with a ${this.wheels[2].getTireBrand} tire`
+    );
+    console.log(
+      `Wheel 4: ${this.wheels[3].getDiameter} inch with a ${this.wheels[3].getTireBrand} tire`
+    );
+  }
 }
 
 // Export the Truck class as the default export
