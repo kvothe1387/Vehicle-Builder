@@ -20,7 +20,7 @@ class Truck extends Vehicle {
   wheels: Wheel[];
   towingCapacity: number;
 
-  // ***ODO: Create a constructor that accepts the properties of the Truck class
+  // ***TODO: Create a constructor that accepts the properties of the Truck class
   // ***TODO: The constructor should call the constructor of the parent class, Vehicle
   // ***TODO: The constructor should initialize the properties of the Truck class
   // ***TODO: The constructor should check if the wheels array has 4 elements and create 4 new default Wheel objects if it does not
