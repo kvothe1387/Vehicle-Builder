@@ -4,6 +4,7 @@ import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
+import Vehicle from "./Vehicle.js";
 
 // define the Cli class
 class Cli {
@@ -70,10 +71,10 @@ class Cli {
           this.createCar();
         } else if (answers.vehicleType === 'Truck') {
           this.createTruck();
-        } else (answers.vehicleType === 'Motorbike'){
+        } else if (answers.vehicleType === 'Motorbike') {
           this.createMotorbike();
         }
-        // TODO: add statements to create a truck or motorbike if the user selects the respective vehicle type
+        // ***TODO: add statements to create a truck or motorbike if the user selects the respective vehicle type
 
       });
   }
@@ -115,7 +116,7 @@ class Cli {
       ])
       .then((answers) => {
         const car = new Car(
-          // TODO: The generateVin method is static and should be called using the class name Cli, make sure to use Cli.generateVin() for creating a truck and motorbike as well!
+          // ***TODO: The generateVin method is static and should be called using the class name Cli, make sure to use Cli.generateVin() for creating a truck and motorbike as well!
           Cli.generateVin(),
           answers.color,
           answers.make,
@@ -123,19 +124,9 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          []);
+          [],
+        );
 
-        const truck = new Truck(
-          Cli.generateVin(),
-          answers.color,
-          answers.make,
-          answers.model,
-          answers.towingCapacity,
-          parseInt(answers.year),
-          parseInt(answers.weight),
-          parseInt(answers.topSpeed),
-          parseInt(answers.towingCapacity),
-          []);
         // push the car to the vehicles array
         this.vehicles.push(car);
         // set the selectedVehicleVin to the vin of the car
@@ -186,10 +177,25 @@ class Cli {
         },
       ])
       .then((answers) => {
-        // TODO: Use the answers object to pass the required properties to the Truck constructor
-        // TODO: push the truck to the vehicles array
-        // TODO: set the selectedVehicleVin to the vin of the truck
-        // TODO: perform actions on the truck
+        // ***TODO: Use the answers object to pass the required properties to the Truck constructor
+        // ***TODO: push the truck to the vehicles array
+        // ***TODO: set the selectedVehicleVin to the vin of the truck
+        // ***TODO: perform actions on the truck
+        const truck = new Truck(
+          Cli.generateVin(),
+          answers.color,
+          answers.make,
+          answers.model,
+          parseInt(answers.year),
+          parseInt(answers.weight),
+          parseInt(answers.topSpeed),
+          [],
+          parseInt(answers.towingCapacity),
+        );
+        this.vehicles.push(truck);
+        this.selectedVehicleVin = truck.vin;
+        this.performActions();
+
       });
   }
 
@@ -296,9 +302,26 @@ class Cli {
         },
       ])
       .then((answers) => {
-        // TODO: check if the selected vehicle is the truck
-        // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
-        // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
+        // ***TODO: check if the selected vehicle is the truck
+        // ***TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
+        // ***TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
+        const selectedVehicle = this.vehicles.find(
+          (vehicle) => vehicle.vin === answers.vehicleToTow,
+        );
+        if (!selectedVehicle) {
+          console.log("Invalid vehicle selected.");
+          this.performActionsOnTruck(truck);
+        } else if (
+          selectedVehicle instanceof Truck &&
+          selectedVehicle.vin === truck.vin
+        ) {
+          console.log("The truck cannot tow itself.");
+          this.performActionsOnTruck(truck);
+        } else {
+          console.log("Towing the selected vehicle...");
+          this.towVehicle(selectedVehicle);
+          this.performActionsOnTruck(truck);
+        }
       });
   }
 
