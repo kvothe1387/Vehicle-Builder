@@ -34,7 +34,7 @@ class Truck extends Vehicle {
     weight: number,
     topSpeed: number,
     wheels: Wheel[],
-    towingCapacity: number
+    towingCapacity: number,
   ) {
     super();
 

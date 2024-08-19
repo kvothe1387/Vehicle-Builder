@@ -257,8 +257,8 @@ class Cli {
   }
 
   // method to find a vehicle to tow
-  // TODO: add a parameter to accept a truck object
-  findVehicleToTow(): void {
+  // ***TODO: add a parameter to accept a truck object
+  findVehicleToTow(truck: Truck): void {
     inquirer
       .prompt([
         {
