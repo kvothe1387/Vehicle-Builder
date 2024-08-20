@@ -46,6 +46,7 @@ class Truck extends Vehicle {
     this.year = year;
     this.weight = weight;
     this.topSpeed = topSpeed;
+    this.wheels = wheels;
     this.towingCapacity = towingCapacity;
 
     if (wheels.length !== 4) {
@@ -61,6 +62,12 @@ class Truck extends Vehicle {
     // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
     // TODO: If it is, log that the vehicle is being towed
     // TODO: If it is not, log that the vehicle is too heavy to be towed
+
+    if (this.weight <= this.towingCapacity) {
+      console.log(`${vehicle.make} ${vehicle.model} is being towed`);
+    } else {
+      console.log(`${vehicle.make} ${vehicle.model} is plumper than weight allowed to be towed`);
+    }
   }
 
   // ***TODO: Override the printDetails method from the Vehicle class
@@ -78,6 +85,7 @@ class Truck extends Vehicle {
     console.log(`Year: ${this.year}`);
     console.log(`Weight: ${this.weight} lbs`);
     console.log(`Top Speed: ${this.topSpeed}`);
+    console.log(`Wheels: ${this.wheels}`);
     console.log(`Towing Capacity: ${this.towingCapacity} lbs`);
 
     console.log(

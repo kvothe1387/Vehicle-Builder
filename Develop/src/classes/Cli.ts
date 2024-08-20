@@ -305,25 +305,28 @@ class Cli {
         // ***TODO: check if the selected vehicle is the truck
         // ***TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
         // ***TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
+
         const selectedVehicle = this.vehicles.find(
           (vehicle) => vehicle.vin === answers.vehicleToTow,
         );
+
         if (!selectedVehicle) {
-          console.log("Invalid vehicle selected.");
-          this.performActionsOnTruck(truck);
+          console.log("Chosen vehicle not found.");
+          this.performActions();
         } else if (
           selectedVehicle instanceof Truck &&
           selectedVehicle.vin === truck.vin
         ) {
-          console.log("The truck cannot tow itself.");
-          this.performActionsOnTruck(truck);
+          console.log("Own truck cannnot pull  own truck.");
+          this.performActions();
         } else {
-          console.log("Towing the selected vehicle...");
-          this.towVehicle(selectedVehicle);
-          this.performActionsOnTruck(truck);
+          console.log('Towing the chosen vehicle...');
+          truck.tow(selectedVehicle);
+          this.performActions();
         }
       });
   }
+
 
   // method to perform actions on a vehicle
   performActions(): void {
@@ -426,6 +429,7 @@ class Cli {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               if (this.vehicles[i] instanceof Motorbike) {
                 (this.vehicles[i] as Motorbike).wheelie();
+                return;
               } else {
                 console.log('This vehicle cannot perform a wheelie.');
               }
