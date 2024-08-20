@@ -12,7 +12,7 @@ Refer to the [video submission guide on the Full-Stack Blog](https://coding-boot
 
 ```md
 AS a developer
-I WANT to update an existing application to include additional vehicle types
+I WANT to update an existing applicatio to include additional vehicle types
 SO THAT I am able to comprehend and work with existing code bases.
 ```
 
